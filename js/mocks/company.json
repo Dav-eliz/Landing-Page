@@ -1,0 +1,57 @@
+{ "banner":{
+  "titulo": "Bienvenido a nuestra tienda de música",
+  "description":" Mi Sol es una tienda de música que ofrece una gran variedad de instrumentos, accesorios y servicios. Mi Sol es más que una tienda, es un espacio para compartir y disfrutar de la música."
+},
+
+  "contactos":{
+    "titulo": "Contáctenos",
+    "celu": "Teléfono: +506 2222-2222",
+    "email": "Correo electrónico: info@empresa.com",
+    "insta": "Instagram: @empresa",
+    "address": "Dirección Oficinas Centrales",
+    "ex": "Calle 1, Avenida 2, Edificio 3, Nicoya, Costa Rica"
+
+
+  },
+  "footer":{
+    "foooter":"© 2023 Tienda de Instrumentos Musicales"
+  },
+  "products": [
+    {
+      "id": "1",
+      "icon": "icons/Fender.png",
+      "description": "Guitarra Fender Stratocaster.\n Price: $599.99"
+      
+    },
+    {
+      "id": "2",
+      "icon": "icons/Teclado.png",
+      "description": "Teclado Yamaha PSR-E373.\n Price: $199.99"
+       
+    },
+    {
+      "id": "3",
+      "icon": "icons/Bateria.png",
+      "description": "Batería Pearl Export EXX725S.\n Price: $799.99"
+      
+    }
+  ],
+  "services": [
+    {
+      "id": "1",
+      "icon": "icons/Reparacion.png",
+      "description": "Reparaciones\n Entendemos lo importante que es tu equipo musical para ti. Sabemos que tus instrumentos y equipos son más que simples herramientas; son extensiones de tu pasión y creatividad. Es por eso que ofrecemos un servicio de reparaciones de primera calidad que cuida y mima tus instrumentos como si fueran los nuestros."
+    },
+    {
+      "id": "2",
+      "icon": "icons/Eventos.png",
+      "description": "Eventos\n Sabemos que la música en vivo es una experiencia única e inolvidable. Es por eso que hemos creado un espacio dedicado a eventos musicales que te sumergirá en un mundo de sonidos y emociones. Ya seas un ávido amante de la música o un músico en busca de inspiración, nuestros eventos te brindarán la oportunidad de experimentar la música de una manera especial."
+    },
+    {
+      "id": "3",
+      "icon": "icons/Talleres.png",
+      "description": "Talleres\n Creemos que la música es una fuente inagotable de creatividad y aprendizaje. Nuestros talleres creativos están diseñados para ayudarte a explorar tu pasión musical, mejorar tus habilidades y descubrir nuevas facetas de la música que amas. Ya seas un principiante curioso o un músico experimentado, nuestros talleres te inspirarán y enriquecerán tu viaje musical."
+    }
+  ]
+
+}
