@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Administrativo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Panel Administrativo</h1>
+
+    <!-- Actualizar información principal de la empresa -->
+    <div>
+        <h2>Actualizar información principal de la empresa</h2>
+        <p>ID de la empresa:</p>
+        <input type="text" id="companyId">
+        <p>Nueva descripción:</p>
+        <input type="text" id="companyDescription">
+        <p>Nueva URL de imagen:</p>
+        <input type="text" id="companyImageUrl">
+        <button onclick="manejarOperacion('actualizar', 'company')">Actualizar</button>
+        <button onclick="manejarOperacion('eliminar', 'company')">Eliminar</button>
+    </div>
+
+    <!-- Actualizar y eliminar servicios -->
+    <div>
+        <h2>Actualizar y eliminar servicios</h2>
+        <p>ID del servicio:</p>
+        <input type="text" id="serviceId">
+        <p>Nueva descripción:</p>
+        <input type="text" id="serviceDescription">
+        <p>Nueva URL:</p>
+        <input type="text" id="serviceUrl">
+        <button onclick="manejarOperacion('actualizar', 'service')">Actualizar</button>
+        <button onclick="manejarOperacion('eliminar', 'service')">Eliminar</button>
+    </div>
+
+    <!-- Actualizar y eliminar galería -->
+    <div>
+        <h2>Actualizar y eliminar galería</h2>
+        <p>ID de la galería:</p>
+        <input type="text" id="galeryId">
+        <p>Nueva descripción:</p>
+        <input type="text" id="galeryDescription">
+        <p>Nueva URL:</p>
+        <input type="text" id="galeryUrl">
+        <button onclick="manejarOperacion('actualizar', 'galery')">Actualizar</button>
+        <button onclick="manejarOperacion('eliminar', 'galery')">Eliminar</button>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
