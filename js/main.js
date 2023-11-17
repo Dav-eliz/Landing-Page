@@ -4,29 +4,29 @@ document.addEventListener("DOMContentLoaded", function () {
   let texto_cabecera = document.getElementById("p-banner");
 
   // Cargar datos para los servicios
-  fetch('http://localhost:3000/companys/1')
-  .then(response => response.json())
-  .then(data => {
-    // Aquí puedes acceder a los datos del JSON
-    console.log(data);
-    
-    const galerys = data.galerys;
-    const servicios = data.services;
-    h1_banner.textContent = data.banner.titulo;
-    texto_cabecera.textContent = data.banner.description;
+  fetch('http://localhost:3000/companys/1')  // Actualiza la URL según la ruta de tu API
+    .then(response => response.json())
+    .then(data => {
+      // Aquí puedes acceder a los datos del JSON
+      console.log(data);
 
-    servicios.forEach(service => {
-      document.getElementById(`desc_${service.id}`).innerText = service.description;
-      document.getElementById(`img_${service.id}`).src = service.icon;
-    });
+      const galerys = data.galerys;
+      const servicios = data.services;
+      h1_banner.textContent = data.name;  // Cambia de "data.banner.titulo" a "data.name"
+      texto_cabecera.textContent = data.description;  // Cambia de "data.banner.description" a "data.description"
 
-    galerys.forEach(galery => {
-      document.getElementById(`descr_${galery.id}`).innerText = galery.description;
-      document.getElementById(`imgs_${galery.id}`).src = galery.icon;
+      servicios.forEach(service => {
+        document.getElementById(`desc_${service.id}`).innerText = service.description;
+        document.getElementById(`img_${service.id}`).src = service.url;
+      });
+
+      galerys.forEach(galery => {
+        document.getElementById(`descr_${galery.id}`).innerText = galery.description;
+        document.getElementById(`imgs_${galery.id}`).src = galery.url;
+      });
+    })
+    .catch(error => {
+      console.error('Hubo un error:', error);
     });
-  })
-  .catch(error => {
-    console.error('Hubo un error:', error);
-  });
 
 });
