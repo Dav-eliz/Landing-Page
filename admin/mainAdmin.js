@@ -1,147 +1,157 @@
-document.addEventListener("DOMContentLoaded"),
-    function () {
-        const apiBaseUrl = 'http://localhost:3000';
+// mainA.js
 
-        //  Funciones para operaciones de actualizacion y eliminacion
+// Función para manejar operaciones de actualizar y eliminar para la entidad Company
+function manejarOperacionCompany(operacion) {
+    const id = document.getElementById('companyId').value;
+    if (!id) {
+        alert('Por favor, ingrese un ID válido para la empresa.');
+        return;
+    }
 
-        function manejarOperacion(tipoOperacion, entidad) {
-            const entityId = document.getElementById('${entidad}Id').value;
+    const descripcion = document.getElementById('companyDescription').value;
+    const urlImagen = document.getElementById('companyImageUrl').value;
 
-            //Actulizar y eliminar empresa
-            if (entidad === 'company') {
-                const companyDescription = document.getElementById('${entidad}Description').value;
-                const companyImageUrl = document.getElementById('${entidad}ImageUrl').value;
+    if (operacion === 'actualizar') {
+        actualizarRegistroCompany(id, descripcion, urlImagen);
+    } else if (operacion === 'eliminar') {
+        eliminarRegistroCompany(id);
+    }
+}
 
-                if (tipoOperacion === 'actualizar') {
-                    updateCompany(entityId, companyImageUrl);
-                } else if (tipoOperacion === 'eliminar') {
-                    deleteEntity(entityId, 'company');
-                }
+// Función para manejar operaciones de actualizar y eliminar para la entidad Service
+function manejarOperacionService(operacion) {
+    const id = document.getElementById('serviceId').value;
+    if (!id) {
+        alert('Por favor, ingrese un ID válido para el servicio.');
+        return;
+    }
+
+    const descripcion = document.getElementById('serviceDescription').value;
+    const url = document.getElementById('serviceUrl').value;
+
+    if (operacion === 'actualizar') {
+        actualizarRegistroService(id, descripcion, url);
+    } else if (operacion === 'eliminar') {
+        eliminarRegistroService(id);
+    }
+}
+
+// Función para manejar operaciones de actualizar y eliminar para la entidad Galery
+function manejarOperacionGalery(operacion) {
+    const id = document.getElementById('galeryId').value;
+    if (!id) {
+        alert('Por favor, ingrese un ID válido para la galería.');
+        return;
+    }
+
+    const descripcion = document.getElementById('galeryDescription').value;
+    const url = document.getElementById('galeryUrl').value;
+
+    if (operacion === 'actualizar') {
+        actualizarRegistroGalery(id, descripcion, url);
+    } else if (operacion === 'eliminar') {
+        eliminarRegistroGalery(id);
+    }
+}
+
+// Funciones para la entidad Company
+function actualizarRegistroCompany(id, descripcion, urlImagen) {
+    fetch(`http://localhost:3000/companys/${id}`, {
+        method: 'PATCH', // o 'PUT' dependiendo de tu API
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            description: descripcion,
+            imageUrl: urlImagen,
+        }),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('No se pudo actualizar la entidad Company.');
             }
+            alert('Entidad Company actualizada con éxito.');
+        })
+        .catch(error => alert(error));
+}
 
-            //Actualizar y eliminar servicio
-            else if (entidad === 'service') {
-                const serviceDescription = document.getElementById('${entidad}Description').value;
-
-                const serviceUrl = document.getElementById('${entidad}Url').value;
-
-                if (tipoOperacion === 'actualizar') {
-                    updateService(entityId, serviceDescription, serviceUrl);
-                } else if (tipoOperacion === 'eliminar') {
-                    deleteEntity(entityId, 'service');
-                }
+function eliminarRegistroCompany(id) {
+    fetch(`http://localhost:3000/companys/${id}`, {
+        method: 'DELETE',
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('No se pudo eliminar la entidad Company.');
             }
+            alert('Entidad Company eliminada con éxito.');
+        })
+        .catch(error => alert(error));
+}
 
-
-            //Actualizar y eliminar galeria
-            else if (entidad === 'galery') {
-                const galeryDescription = document.getElementById('${entidad}Description').value;
-
-                const galeryUrl = document.getElementById('${entidad}Url').value;
-
-                if (tipoOperacion === 'actualizar') {
-                    updateGalery(entityId, galeryDescription, galeryUrl);
-                } else if (tipoOperacion === 'eliminar') {
-                    deleteEntity(entityId, 'galery');
-                }
+// Funciones para la entidad Service
+function actualizarRegistroService(id, descripcion, url) {
+    fetch(`http://localhost:3000/services/${id}`, {
+        method: 'PATCH', // o 'PUT' dependiendo de tu API
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            description: descripcion,
+            url: url,
+        }),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('No se pudo actualizar la entidad Service.');
             }
-        }
+            alert('Entidad Service actualizada con éxito.');
+        })
+        .catch(error => alert(error));
+}
 
-        // Función para actualizar entidad (Company, Galery, Service)
-        function updateEntity(entityId, description, url) {
-            // Implementa la lógica para actualizar una entidad
-            console.log(`Actualizar entidad con ID: ${entityId}, Descripción: ${description}, URL: ${url}`);
-        }
+function eliminarRegistroService(id) {
+    fetch(`http://localhost:3000/services/${id}`, {
+        method: 'DELETE',
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('No se pudo eliminar la entidad Service.');
+            }
+            alert('Entidad Service eliminada con éxito.');
+        })
+        .catch(error => alert(error));
+}
 
-        // Función para eliminar una entidad (Company, Galery, Service)
-        function deleteEntity(entityId, entityType) {
-            // Llamada a la API para eliminar la entidad
-            fetch(`${apiBaseUrl}/api/${entityType}s/${entityId}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(`Respuesta del servidor (Eliminar ${entityType}):`, data);
-                    // Puedes realizar acciones adicionales según la respuesta del servidor
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        }
-        // Función para actualizar una empresa
-        function updateCompany(companyId, description, imageUrl) {
-            // Llamada a la API para actualizar la empresa
-            fetch(`${apiBaseUrl}/api/companies/${companyId}`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    description: description,
-                    imageUrl: imageUrl,
-                }),
-            })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Respuesta del servidor (Actualizar empresa):', data);
-                    // Puedes realizar acciones adicionales según la respuesta del servidor
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        }
+// Funciones para la entidad Galery
+function actualizarRegistroGalery(id, descripcion, url) {
+    fetch(`http://localhost:3000/galerys/${id}`, {
+        method: 'PATCH', // o 'PUT' dependiendo de tu API
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            description: descripcion,
+            url: url,
+        }),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('No se pudo actualizar la entidad Galery.');
+            }
+            alert('Entidad Galery actualizada con éxito.');
+        })
+        .catch(error => alert(error));
+}
 
-        // Función para actualizar un servicio
-        function updateService(serviceId, description, url) {
-            // Llamada a la API para actualizar el servicio
-            fetch(`${apiBaseUrl}/api/services/${serviceId}`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    description: description,
-                    url: url,
-                }),
-            })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Respuesta del servidor (Actualizar servicio):', data);
-                    // Puedes realizar acciones adicionales según la respuesta del servidor
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        }
-
-        // Función para actualizar una galería
-        function updateGalery(galeryId, description, url) {
-            // Llamada a la API para actualizar la galería
-            fetch(`${apiBaseUrl}/api/galerys/${galeryId}`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    description: description,
-                    url: url,
-                }),
-            })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Respuesta del servidor (Actualizar galería):', data);
-                    // Puedes realizar acciones adicionales según la respuesta del servidor
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        }
-    };
-
-
-
-
-
+function eliminarRegistroGalery(id) {
+    fetch(`http://localhost:3000/galerys/${id}`, {
+        method: 'DELETE',
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('No se pudo eliminar la entidad Galery.');
+            }
+            alert('Entidad Galery eliminada con éxito.');
+        })
+        .catch(error => alert(error));
+}
