@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let texto_cabecera = document.getElementById("p-banner");
 
   // Cargar datos para los servicios
-  fetch('./js/mocks/company.json')
+  fetch('http://localhost:3000/companys/1')
   .then(response => response.json())
   .then(data => {
     // Aquí puedes acceder a los datos del JSON
